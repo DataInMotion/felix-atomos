@@ -27,7 +27,7 @@ public interface Launcher
     static LauncherBuilder builder()
     {
         final Optional<LauncherBuilder> oLauncherBuilder = ServiceLoader.load(
-            LauncherBuilder.class).findFirst();
+            LauncherBuilder.class, LauncherBuilder.class.getClassLoader()).findFirst();
 
         if (oLauncherBuilder.isPresent())
         {

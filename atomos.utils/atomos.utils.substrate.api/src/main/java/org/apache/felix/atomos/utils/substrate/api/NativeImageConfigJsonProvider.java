@@ -29,7 +29,7 @@ public interface NativeImageConfigJsonProvider
     {
 
         Optional<NativeImageConfigJsonProvider> oJsonUtil = ServiceLoader.load(
-            NativeImageConfigJsonProvider.class).findFirst();
+            NativeImageConfigJsonProvider.class, NativeImageConfigJsonProvider.class.getClassLoader()).findFirst();
 
         if (oJsonUtil.isPresent())
         {

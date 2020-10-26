@@ -41,7 +41,7 @@ public interface NativeImageCli
     {
 
         final Optional<NativeImageCliBuilder> oNativeImageCliBuilder = ServiceLoader.load(
-            NativeImageCliBuilder.class).findFirst();
+            NativeImageCliBuilder.class, NativeImageCli.class.getClassLoader()).findFirst();
 
         if (oNativeImageCliBuilder.isPresent())
         {

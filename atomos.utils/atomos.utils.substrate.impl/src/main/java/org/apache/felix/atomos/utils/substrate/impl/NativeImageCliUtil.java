@@ -32,6 +32,8 @@ public class NativeImageCliUtil
 
     private static final String GRAAL_HOME = "GRAAL_HOME";
 
+    private static final String GRAAL_VM = "GRAAL_VM";
+
     private static final String JAVA_HOME = "java.home";
 
     public static Path execute(final Path outputDir,
@@ -104,6 +106,14 @@ public class NativeImageCliUtil
                     return oExec;
                 }
             }
+            if (System.getenv(GRAAL_VM) != null)
+            {
+            	oExec = findNativeImageExecutable(Paths.get(System.getenv(GRAAL_VM)));
+            	if (oExec.isPresent())
+            	{
+            		return oExec;
+            	}
+            }
             if (System.getProperty(JAVA_HOME) != null)
             {
                 oExec = findNativeImageExecutable(
@@ -126,6 +136,13 @@ public class NativeImageCliUtil
             if (candidate.isPresent())
             {
                 return candidate;
+            } else {
+            	final Optional<Path> windowsCandidate = findNativeImageExecutable(
+                        path.resolve("native-image.cmd"));
+            	if (windowsCandidate.isPresent())
+                {
+                    return windowsCandidate;
+                }
             }
             return findNativeImageExecutable(path.resolve("bin"));
         }

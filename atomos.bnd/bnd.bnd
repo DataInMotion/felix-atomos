@@ -1,0 +1,14 @@
+-privatepackage: org.osgi.util.converter,\
+	org.apache.felix.atomos.*,\
+	org.apache.felix.scr.impl.logger
+
+
+-conditionalpackage: \
+	org.apache.felix.scr.*,\
+	org.kxml2.*,\
+	org.xmlpull.*,\
+	org.osgi.service.component.*
+	
+	
+-includeresource: \
+	runtime.jar=${.}/../atomos.utils/atomos.utils.core/target/org.apache.felix.atomos.utils.core-${project.version}.jar

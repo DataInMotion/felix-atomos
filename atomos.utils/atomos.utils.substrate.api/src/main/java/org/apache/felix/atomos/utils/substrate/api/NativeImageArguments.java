@@ -26,7 +26,7 @@ public interface NativeImageArguments
     static NativeImageArgumentsBuilder builder()
     {
         final Optional<NativeImageArgumentsBuilder> oargsBuilder = ServiceLoader.load(
-            NativeImageArgumentsBuilder.class).findFirst();
+            NativeImageArgumentsBuilder.class, NativeImageArguments.class.getClassLoader()).findFirst();
 
         if (oargsBuilder.isPresent())
         {
